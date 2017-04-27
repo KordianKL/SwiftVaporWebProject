@@ -1,0 +1,62 @@
+#extend("base")
+
+#export("body") {
+
+<div class="row">
+    <div class="u-full-width">
+        <h4>Dodaj Eksperta</h4>
+    </div>
+</div>
+
+<form action="/main" method="post">
+    <div class="row">
+        <div class="three columns">
+            <label>Imie</label>
+            <input name="imie" class="u-full-width" placeholder="imie eksperta"/>
+        </div>
+        <div class="three columns">
+            <label>Nazwisko</label>
+            <input name="nazwisko" class="u-full-width" placeholder="nazwisko eksperta"/>
+        </div>
+        <div class="three columns">
+            <label>Miasto</label>
+            <input name="miasto" class="u-full-width" placeholder="miasto eksperta"/>
+        </div>
+        <div class="three columns">
+            <label>Jednostka Organizacyjna</label>
+            <input name="jo" class="u-full-width" placeholder="jednostka organizacyjna eksperta"/>
+            <input class="button-primary" type="submit" value="Zapisz">
+        </div>
+    </div>
+</form>
+
+#loop(experts, "expert") {
+<form action="/main/#(expert.id)/update" method="post">
+<div class="row">
+    <div class="two columns">
+        <input name="imie" class="u-full-width" value="#(expert.imie)"/>
+    </div>
+    <div class="two columns">
+        <input name="nazwisko" class="u-full-width" value="#(expert.nazwisko)"/>
+    </div>
+    <div class="two columns">
+        <input name="miasto" class="u-full-width" value="#(expert.miasto)"/>
+    </div>
+    <div class="two columns">
+        <input name="jo" class="u-full-width" value="#(expert.jo)"/>
+    </div>
+    <div class="two columns">
+        <input type="checkbox" name="czyZweryfikowaneDane" value=#(expert.czyZweryfikowaneDane)/>
+    </div>
+    <div class="one column">
+            <input type="submit" value="UP"/>
+    </div>
+    </form>
+    <div class="one column">
+        <form action="/main/#(expert.id)/delete" method="post">
+            <input type="submit" value="DEL"/>
+        </form>
+    </div>
+</div>
+}
+}
